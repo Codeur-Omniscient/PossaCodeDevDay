@@ -1,0 +1,156 @@
+---
+import { Image } from "astro:assets";
+
+import PossaCodeLogoBlue from "../images/possacodelogo.png";
+import LinkedIn from "@/content/icons/linkedin.svg";
+import XTwitter from "@/content/icons/x.svg";
+import Facebook from "@/content/icons/facebook.svg";
+import Instagram from "@/content/icons/instagram.svg";
+
+const footerLinks = [
+  {
+    title: "Partenaires",
+    links: [
+      {
+        text: "Congo DevOps",
+        href: "https://www.linkedin.com/company/congo-devops/",
+        external: true,
+      },
+      {
+        text: "Galsen Dev",
+        href: "https://galsen.dev/",
+        external: true,
+      },
+      {
+        text: "Devcast",
+        href: "https://devscast.tech/",
+        external: true,
+      },
+      {
+        text: "CGDT",
+        href: "https://www.linkedin.com/company/congo-dream-tech/",
+        external: true,
+      },
+      {
+        text: "SFA",
+        href: "https://www.facebook.com/socialforceagency",
+        external: true,
+      },
+    ],
+  },
+
+  {
+    title: "Liens Importants",
+    links: [
+      {
+        text: "Intégrer la communauté",
+        href: "https://forms.gle/Xx1m2e2EamUPhw44A",
+        external: true,
+      },
+      {
+        text: "Collaboration",
+        href: "",
+        external: false,
+      },
+      {
+        text: "Soutenir",
+        href: "",
+        external: false,
+      },
+    ],
+  },
+];
+
+const socialNetworks = [
+  {
+    icon: LinkedIn,
+    url: "https://www.linkedin.com/company/possacode/",
+  },
+  {
+    icon: XTwitter,
+    url: "http://x.com",
+  },
+  {
+    icon: Facebook,
+    url: "https://www.facebook.com/profile.php?id=100086583818300",
+  },
+  {
+    icon: Instagram,
+    url: "http://www.instagram.com",
+  },
+];
+---
+
+<footer class="bg-[#1A2251]">
+  <div
+    class="container flex flex-wrap justify-between gap-x-52 gap-y-14 py-16 md:py-24"
+  >
+    <a href="/">
+      <Image
+        src={PossaCodeLogoBlue}
+        alt="POssaCode Logo blue"
+        format="webp"
+        quality="high"
+        loading="lazy"
+      />
+    </a>
+
+    <ul role="list" class="flex flex-wrap gap-x-52 gap-y-14 text-white">
+      {
+        footerLinks.map(({ title, links }) => (
+          <li class="flex flex-col space-y-6">
+            <h4 class="text-2xl font-medium">{title}</h4>
+            <ul
+              role="list"
+              class="list-inside list-disc space-y-4 text-sm text-white/95 marker:text-orange"
+            >
+              {links.map((link) => (
+                <li class="decoration-white/20 hover:underline hover:underline-offset-8">
+                  <a
+                    href={link.href}
+                    target={link.external ? "_blank" : ""}
+                    rel="noopener noreferrer"
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="space-y-6 text-white">
+      <h4 class="text-2xl font-medium">Résaux sociaux</h4>
+      <ul role="list" class="flex items-center space-x-6">
+        {
+          socialNetworks.map(({ url, icon: Icon }) => (
+            <li>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={Icon}
+                  alt={`Logo of ${Icon}`}
+                  loading="lazy"
+                  quality="mid"
+                  class="opacity-80 transition-opacity  hover:opacity-100"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="w-full bg-black py-4">
+    <div class="container">
+      <p class="text-center text-sm text-white">
+        <a href="/conditions-generales" class="hover:underline"
+          >Conditions générales de la communauté</a
+        >
+        ©2021 - {new Date().getFullYear()}, PossaCode tous droits réservés
+      </p>
+    </div>
+  </div>
+</footer>
